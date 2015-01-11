@@ -105,7 +105,7 @@ a {
 }
 
 .gray {
-  background-color: #F3F3F3;
+  background-color: #eeeeee;
   padding-bottom: 10px;
   clear:both;
 }
@@ -212,4 +212,7 @@ span {
   .biopic {
     display: block;
   }
+}
+#roleText {
+    color:#9acfea;
 }
