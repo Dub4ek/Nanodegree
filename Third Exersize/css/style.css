@@ -1,3 +1,16 @@
 body {
     text-align: center;
 }
+
+p {
+    font-size: 18px;
+    color: #111;
+    line-height: 21px;
+    background-color: #CEE8CC;
+    padding: 10px 10px 10px 10px;
+    position: inherit;
+}
+
+body {
+    background-color: #FBFFE3;
+}
