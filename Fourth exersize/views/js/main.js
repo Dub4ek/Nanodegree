@@ -455,10 +455,11 @@ var resizePizzas = function (size) {
         return dx;
     }
 
-    // Iterates through pizza elements on the page and changes their widths
+    // Iterates through pizza elements on the page and changes their widths. Move variable initializing from loop body, replace pizza selector in Dom to variable with collected pizzas. Removed selecting all pizzas on every loop iteration.
     function changePizzaSizes(size) {
         var dx = determineDx(randomPizzas[0], size);
         var newwidth = (randomPizzas[0].offsetWidth + dx) + 'px';
+
         for (var i = 0; i < randomPizzas.length; i++) {
             randomPizzas[i].style.width = newwidth;
         }

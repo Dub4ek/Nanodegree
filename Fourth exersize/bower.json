@@ -1,0 +1,21 @@
+{
+  "name": "Fourth exersize",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Dub4ek/Nanodegree",
+  "authors": [
+    "Andrei Starodubtsev <dub4ek@gmail.com>"
+  ],
+  "description": "NanoDegree exersize",
+  "moduleType": [
+    "amd",
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

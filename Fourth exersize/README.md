@@ -1,3 +1,24 @@
+Udacity Nanodegree Project 4
+
+This project was challenging to get started. The PageSpeed Insights scores above 90 were not difficult to achieve, but the code is not what I would condsider readable. I am able to understand what is going on since I am the one that made the modifications. It also does not seem to match up with what was learned in Protject 1 that included proper formatting and seperation of html and css. Further research needed to help determine the line between readable code and optimization. Also checking pages online most sites were not even above 80, so my guess is that this was an exercise to show how we do it, but we need use our judgement on how to apply the knowledge.
+
+Achieve a score above 90 on PageSpeed Insights
+
+Optimized Images using compression
+Resized images to more appropriate to what is being displayed
+Move Javascript to end of HTML
+Add async to script tag
+Minified CSS
+Add Minified CSS inline
+Steps I took to optimize main.js in pizza.html (changes commented in code)
+Remove links to embedded fonts and etc
+
+Changed sliding pizza to transform.translateX
+Moved code out of loops to reduce calculations
+Add code at end of file to allow for async call in HTML
+Resources used while completing the project
+
+
 ## Website Performance Optimization portfolio project
 
 Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
