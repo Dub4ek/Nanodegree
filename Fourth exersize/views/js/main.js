@@ -12,6 +12,8 @@
  cameron *at* udacity *dot* com
  */
 
+var PIZZA_COUNT = 100;
+
 var movingPizzasCollection = [];
 var randomPizzas = [];
 var pizzaSizeSelector;
@@ -460,7 +462,7 @@ var resizePizzas = function (size) {
         var dx = determineDx(randomPizzas[0], size);
         var newwidth = (randomPizzas[0].offsetWidth + dx) + 'px';
 
-        for (var i = 0; i < randomPizzas.length; i++) {
+        for (var i = 0; i < PIZZA_COUNT; i++) {
             randomPizzas[i].style.width = newwidth;
         }
     }
@@ -477,7 +479,7 @@ var resizePizzas = function (size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
-for (var i = 2; i < 100; i++) {
+for (var i = 2; i < PIZZA_COUNT; i++) {
     randomPizzas.push(pizzaElementGenerator(i));
 }
 pizzasDiv = document.getElementById("randomPizzas");
@@ -526,6 +528,7 @@ function updatePositions() {
         pizza.style.left = leftShift;
     }
 
+
     // User Timing API to the rescue again. Seriously, it's worth learning.
     // Super easy to create custom metrics.
     window.performance.mark("mark_end_frame");
@@ -537,6 +540,7 @@ function updatePositions() {
     }
 }
 
+
 // runs updatePositions on scroll
 window.addEventListener('scroll', updatePositions);
 
@@ -546,15 +550,23 @@ document.addEventListener('DOMContentLoaded', function () {
     var cols = 8;
     var s = 256;
     var elem;
+    var screenAvailHeight = screen.availHeight;
+    var currentTopShift = 0;
 
     for (var i = 0; i < 200; i++) {
+        currentTopShift = Math.floor(i / cols) * s;
+
+        if ( currentTopShift > screenAvailHeight) {
+            break;
+        }
+
         elem = document.createElement('img');
         elem.className = 'mover';
         elem.src = "images/pizza.png";
         elem.style.height = "100px";
         elem.style.width = "73.333px";
         elem.basicLeft = (i % cols) * s;
-        elem.style.top = (Math.floor(i / cols) * s) + 'px';
+        elem.style.top = currentTopShift + 'px';
         movingPizzasCollection.push(elem);
         document.querySelector("#movingPizzas1").appendChild(elem);
     }
