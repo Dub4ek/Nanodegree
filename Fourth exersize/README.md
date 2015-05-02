@@ -10,7 +10,6 @@ Steps to optimize portfolio project:
 - Steps I took to optimize main.js in pizza.html (changes commented in code)
 - Remove links to embedded fonts, external images and etc.
 
-- Changed sliding pizza to transform.translateX
 - Moved code out of loops to reduce calculations
 - Add code at end of file to allow for async call in HTML
 - Resources used while completing the project
