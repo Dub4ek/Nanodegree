@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Map project</title>
+    <link rel="stylesheet" href="src/build/style.min.css" type="text/css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+    <script type="text/javascript" src="bower_components/knockout/dist/knockout.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyChLnOoqcUyxnI7cKDGpqDriCN2nc1Acjo&sensor=TRUE"></script>
+</head>
+<body>
+<div id="connection-error-splash">
+    <div class="container-fluid">
+        <div class="jumbotron">
+            <h1>Connection Error</h1>
+
+            <p>Unable to connect with Google Maps API. Check your internet connection and try again.</p>
+        </div>
+    </div>
+</div>
+<nav id="navbar" class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container-fluid">
+        <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" data-bind="value:searchPhrase" placeholder="Type here">
+                <button type="submit" class="btn btn-default btn-sm" data-bind="click: searchProcess"><span class="glyphicon glyphicon-search"></span></button>
+                <button type="submit" class="btn btn-default btn-sm" data-bind="click: resetData">                Reset</button>
+            </div>
+        </form>
+    </div>
+    <ul id="linkList" class="nav nav-stacked" data-bind="foreach: places, click: showMarker">
+        <li data-bind="text: title"></li>
+    </ul>
+</nav>
+<div id="map-canvas"></div>
+<script type="text/javascript" src="src/build/FiveProject.min.js"></script>
+</body>
+</html>
