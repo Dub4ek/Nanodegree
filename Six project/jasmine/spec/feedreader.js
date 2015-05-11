@@ -4,10 +4,11 @@ $(function () {
      * allFeeds variable has been defined and that it is not
      * empty.
      */
+    'use strict';
     describe('RSS Feeds', function () {
         it('are defined', function () {
             expect(allFeeds).toBeDefined();
-            expect(allFeeds.length).not.toBe(0);
+            expect(allFeeds.length).toBeGreaterThan(0);
         });
 
         /**
@@ -19,8 +20,9 @@ $(function () {
                 item = allFeeds[i];
                 expect(item.url).toBeDefined();
                 expect(item.url).not.toBe('');
+                expect(item.url).toMatch(/(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/);
             }
-        })
+        });
         /**
          * Check items that have attribute name in model
          */
@@ -31,7 +33,7 @@ $(function () {
                 expect(item.name).toBeDefined();
                 expect(item.name).not.toBe('');
             }
-        })
+        });
     });
 
     /**
