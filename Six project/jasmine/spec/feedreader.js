@@ -6,7 +6,7 @@ $(function () {
      */
     'use strict';
     describe('RSS Feeds', function () {
-        it('are defined', function () {
+        it('check feed items', function () {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).toBeGreaterThan(0);
         });
@@ -14,24 +14,31 @@ $(function () {
         /**
          * Check items that have attribute url in model
          */
-        it('loop each feed, check URL', function () {
+        it('Check URL of every feed', function () {
             var item;
             for (var i = 0; i < allFeeds.length; i++) {
                 item = allFeeds[i];
                 expect(item.url).toBeDefined();
                 expect(item.url).not.toBe('');
+            }
+        });
+        it('Check URL spelling of each feed', function () {
+            var item;
+            for (var i = 0; i < allFeeds.length; i++) {
+                item = allFeeds[i];
                 expect(item.url).toMatch(/(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/);
             }
         });
         /**
          * Check items that have attribute name in model
          */
-        it('loop each feed, check name', function () {
+        it('Check name of every feed', function () {
             var item;
             for (var i = 0; i < allFeeds.length; i++) {
                 item = allFeeds[i];
                 expect(item.name).toBeDefined();
                 expect(item.name).not.toBe('');
+                expect(typeof item.name).toEqual('string');
             }
         });
     });
@@ -50,15 +57,11 @@ $(function () {
             expect(body.hasClass('menu-hidden')).toBe(true);
         });
 
-        it('changes visibility after click', function () {
-            var currentClass = body.attr('class');
-            var expectedNewClass = (body.hasClass('menu-hidden')) ? '' : 'menu-hidden';
-
+        it("changes visibility after click", function() {
             menuIcon.click();
-            expect(body.attr('class')).toBe(expectedNewClass);
-
+            expect($('body').hasClass('menu-hidden')).toBe(false);
             menuIcon.click();
-            expect(body.attr('class')).toBe(currentClass);
+            expect($('body').hasClass('menu-hidden')).toBe(true);
         });
     });
 
@@ -88,19 +91,25 @@ $(function () {
      * Remember, loadFeed() is asynchronous.
      */
     describe('New feed selection', function () {
-        var content;
+        var self = this;
 
-        beforeEach(function (done) {
-            content = $('.feed').html();
-            loadFeed(1, function () {
-                done();
+        beforeEach(function(done) {
+
+            self.feedListLink = $('.feed-list a');
+            self.contentChanged = false;
+
+            $('.feed').on('DOMSubtreeModified', function() {
+                self.contentChanged = true;
             });
+
+            loadFeed(1, done);
+
         });
 
-        it('changes the content displayed', function (done) {
-            var newContent = $('.feed').html();
-            expect(content).not.toBe(newContent);
+        it("changes the content displayed", function(done) {
+            expect(self.contentChanged).toBe(true);
             done();
         });
+
     });
 }());
