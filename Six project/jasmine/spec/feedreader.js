@@ -91,24 +91,23 @@ $(function () {
      * Remember, loadFeed() is asynchronous.
      */
     describe('New feed selection', function () {
-        var self = this;
+        var firstItem, secondItem;
 
-        beforeEach(function(done) {
+        $(".feed").empty();
 
-            self.feedListLink = $('.feed-list a');
-            self.contentChanged = false;
-
-            $('.feed').on('DOMSubtreeModified', function() {
-                self.contentChanged = true;
+        beforeEach(function (done) {
+            loadFeed(0, function () {
+                firstItem = $('.feed').html();
+                done();
             });
-
-            loadFeed(1, done);
-
         });
 
-        it("changes the content displayed", function(done) {
-            expect(self.contentChanged).toBe(true);
-            done();
+        it('compare two feeds', function (done) {
+            loadFeed(1, function () {
+                secondItem = $('.feed').html();
+                expect(secondItem !== firstItem).toBeTruthy();
+                done();
+            });
         });
 
     });
