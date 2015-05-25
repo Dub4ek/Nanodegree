@@ -22,38 +22,21 @@ var MY_PLACE_DATA = [
     }
 ];
 
-/**
- * Show error splash screen if Google did not load.
- * Else run init function when DOM loads.
- */
-if (window.google === undefined) {
-    var errorSplash = document.getElementById('connection-error-splash');
-
-    if (errorSplash) {
-        errorSplash.style.display = 'block';
-    }
-
-    var navbar = document.getElementById('navbar');
-
-    if (navbar) {
-        navbar.style.display = 'none';
-    }
-} else {
-    google.maps.event.addDomListener(window, 'load', initialize);
-}
-
 function initialize() {
     'use strict';
     var mapOptions = {
         zoom: 12,
         mapTypeId: google.maps.MapTypeId.SATELLITE,
-        center: new google.maps.LatLng(55.752, 37.615)
+        center: new google.maps.LatLng(55.745, 37.660),
+        zoomControl: true,
+        zoomControlOptions: {
+            style: google.maps.ZoomControlStyle.LARGE,
+            position: google.maps.ControlPosition.TOP_LEFT
+        },
+        panControl: false
     };
 
-    application.map = new google.maps.Map(document.getElementById('map-canvas'),
-        mapOptions);
-    application.map.setTilt(45);
-
+    application.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
     application.insertMyData(MY_PLACE_DATA);
 
     if (ko) {
@@ -62,13 +45,34 @@ function initialize() {
 }
 
 /**
+ * Show error splash screen if Google did not load.
+ * Else run init function when DOM loads.
+ */
+if (window.google === undefined) {
+    var errorSplash = document.getElementsByClass('connection-error-splash');
+
+    if (errorSplash) {
+        errorSplash.style.display = 'block';
+    }
+
+    var navbar = document.getElementsByClass('navbar');
+
+    if (navbar) {
+        navbar.style.display = 'none';
+    }
+} else {
+    google.maps.event.addDomListener(window, 'load', initialize);
+}
+
+/**
  * Insert my data to the map
  * @param data
  */
 application.insertMyData = function (data) {
+    'use strict';
     data.forEach(function (item) {
         application.addMarker(item);
-    })
+    });
 };
 
 /**
@@ -77,6 +81,7 @@ application.insertMyData = function (data) {
  * @param flag special marker flag
  */
 application.addMarker = function (data, flag) {
+    'use strict';
     var marker = new google.maps.Marker({
         position: new google.maps.LatLng(data.position.lat, data.position.lon),
         map: application.map,
@@ -99,6 +104,7 @@ application.addMarker = function (data, flag) {
  * Define view model component
  */
 application.viewModel = new (function () {
+    'use strict';
     var self = this;
 
     if (!ko) {
@@ -111,6 +117,11 @@ application.viewModel = new (function () {
         var marker = self.places()[index];
 
         application.map.panTo(marker.getPosition());
+        if (self.mobileView()) {
+            application.map.panBy(0, -100);
+        } else {
+            application.map.panBy(150, 0);
+        }
         application.showInfoWindow(marker);
     };
     self.searchPhrase = ko.observable('');
@@ -170,7 +181,7 @@ application.showInfoWindow = function (marker) {
 
     application.infoWindow = new google.maps.InfoWindow({
         content: [
-            '<div style="text-align: center">',
+            '<div class="infoWindow">',
             imgDiv,
             '<br>',
             marker.title.replace(/"/g, '&quot;'),
@@ -270,11 +281,12 @@ application.forsquareCallback = function (response) {
  * Keep actual curretn window parameters to change loaded image size
  */
 window.onresize = function () {
+    'use strict';
     application.viewModel.windowWidth(window.innerWidth);
     application.viewModel.windowHeight(window.innerHeight);
     application.width = window.innerWidth;
     application.height = window.innerHeight;
-}
+};
 
 application.width = window.innerWidth;
 application.height = window.innerHeight;

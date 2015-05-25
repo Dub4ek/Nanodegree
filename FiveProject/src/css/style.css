@@ -1,6 +1,7 @@
 html {
     min-height: 100%;
     height: 100%;
+    width: 100%;
     overflow: hidden;
 }
 
@@ -11,27 +12,33 @@ body {
 }
 
 #map-canvas {
-    margin-left: 300px;
-    width: 100%;
-    min-height: 100%;
+    left: 300px;
+    top: 0;
+    bottom: 0;
+    height: 100%;
     background-color: gold;
     overflow: hidden;
 }
 
-#navbar {
+.navbar {
     float: left;
     width: 300px;
     height: 100%;
     overflow-y: scroll;
 }
 
-#linkList {
+.linkList {
     list-style-type: none;
 }
 
 li {
     cursor: pointer;
     color: white;
+}
+
+.infoWindow {
+    text-align: center;
+    margin: 20px 0 0 20px;
 }
 
 #connection-error-splash {
@@ -44,15 +51,18 @@ li {
 }
 
 @media (max-width:768px) {
-    #navbar {
+    .navbar {
+        position: fixed;
         width: 100%;
         height: 100px;
     }
+
     #map-canvas {
-        margin-top: 100px;
-        margin-left: 0;
-        width: 100%;
-        min-height: 100%;
+        top: 100px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
     }
 }
 
