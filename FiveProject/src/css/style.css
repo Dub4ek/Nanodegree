@@ -41,16 +41,7 @@ li {
     margin: 20px 0 0 20px;
 }
 
-#connection-error-splash {
-    position: absolute;
-    z-index: 1000;
-    background-color: black;
-    height: 100%;
-    width: 100%;
-    display: none;
-}
-
-@media (max-width:768px) {
+@media (max-width: 768px) {
     .navbar {
         position: fixed;
         width: 100%;
@@ -65,7 +56,3 @@ li {
         overflow: hidden;
     }
 }
-
-
-
-

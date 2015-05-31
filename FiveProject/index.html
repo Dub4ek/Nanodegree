@@ -3,21 +3,16 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Map project</title>
+    <link rel="icon" href="src/img/favicon.png">
     <link rel="stylesheet" href="src/build/style.min.css" type="text/css">
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css">
-    <script type="text/javascript" src="bower_components/knockout/dist/knockout.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="bower_components/offline/themes/offline-language-english.css" type="text/css">
+    <link rel="stylesheet" href="http://github.hubspot.com/offline/themes/offline-theme-chrome.css" type="text/css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+    <script type="text/javascript" src="bower_components/offline/offline.min.js"></script>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyChLnOoqcUyxnI7cKDGpqDriCN2nc1Acjo&sensor=TRUE"></script>
 </head>
 <body>
-<div id="connection-error-splash">
-    <div class="container-fluid">
-        <div class="jumbotron">
-            <h1>Connection Error</h1>
-
-            <p>Unable to connect with Google Maps API. Check your internet connection and try again.</p>
-        </div>
-    </div>
-</div>
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
         <form class="navbar-form navbar-right" role="search">

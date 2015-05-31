@@ -44,25 +44,25 @@ function initialize() {
     }
 }
 
+function connectionUpHandler() {
+    'use strict';
+    if (!application.map) {
+        google.maps.event.addDomListener(window, 'load', initialize);
+    }
+}
+
 /**
  * Show error splash screen if Google did not load.
  * Else run init function when DOM loads.
  */
-if (window.google === undefined) {
-    var errorSplash = document.getElementsByClass('connection-error-splash');
+Offline.options = {checks: {image: {url: 'src/img/favicon.png'}, active: 'image'}};
+Offline.on('confirmed-up', connectionUpHandler, this);
+Offline.check();
 
-    if (errorSplash) {
-        errorSplash.style.display = 'block';
-    }
-
-    var navbar = document.getElementsByClass('navbar');
-
-    if (navbar) {
-        navbar.style.display = 'none';
-    }
-} else {
+if (Offline.state !== 'down') {
     google.maps.event.addDomListener(window, 'load', initialize);
 }
+
 
 /**
  * Insert my data to the map
@@ -196,6 +196,7 @@ application.showInfoWindow = function (marker) {
 
     application.infoWindow.open(application.map, marker);
     application.currentMarker = marker;
+    application.map.setCenter(marker.getPosition());
     marker.setAnimation(google.maps.Animation.BOUNCE);
 };
 
@@ -247,7 +248,7 @@ application.forsquareCallback = function (response) {
 
     removePreviousSearchResults();
 
-    for (var i = 0; i < items.length; i = i + 1) {
+    for (var i = 0; i < items.length; i++) {
         var feature = {
             title: items[i].venue.name,
             icon: 'icons/foursquare.png',

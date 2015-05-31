@@ -1,4 +1,4 @@
-# frontend-nanodegree-map-project
+# frontend-nanodegree-map-project (31 May 2015)
 
 > Frontend Nanodegree Project 5 - Neighborhood Map
 
@@ -33,6 +33,10 @@ If the web page cannot connect with Foursquare to perform a search then an alert
 - **Bootstrap** for css styling.
 - **KnockoutJS** for dynamically updating list of markers during search.
 - **Grunt** for creating minified *build* css and js files, and creating the README.
+- **Offline** for managing internet connection and showing error for user if connection lost.
+
+##### How to run:
+One page application that requires to launch index.html page in your browser
 
 ## Resources
 - [developers.google.com](https://developers.google.com)
